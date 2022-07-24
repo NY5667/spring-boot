@@ -1,0 +1,6 @@
+app.name: in28Minutes
+server:
+  port: 8080
+welcome.message: Welcome message from property file! Welcome to ${app.name} in Prod
+
+basic.message: Dynamic Message in Prod
