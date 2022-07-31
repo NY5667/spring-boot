@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @SpringBootApplication
 @RestController
@@ -35,17 +37,17 @@ public class DemoApplication implements CommandLineRunner {
 //			System.out.println("Insert successfully.");
 //		}
 
-//		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
-//		insertActor.withTableName("books").usingGeneratedKeyColumns("id");
-//
-//		Book book = new Book("Effective Java", "Joshua Bloch", 29.99f);
-//		BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(book);
-//
-//		int result = insertActor.execute(paramSource);
-//
-//		if (result > 0) {
-//			System.out.println("Insert successfully.");
-//		}
+		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
+		insertActor.withTableName("books").usingGeneratedKeyColumns("id");
+
+		Book book = new Book("Effective Java", "Joshua Bloch", 29.99f);
+		BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(book);
+
+		int result = insertActor.execute(paramSource);
+
+		if (result > 0) {
+			System.out.println("Insert successfully.");
+		}
 
 //		testUpdate();
 //		testListAll();
@@ -94,6 +96,13 @@ public class DemoApplication implements CommandLineRunner {
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return String.format("Hello %s!", name);
+	}
+
+	@GetMapping("/messages")
+	public String messages(@RequestParam(value = "name", defaultValue = "World") String name) {
+		ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.US);
+		String message = bundle.getString("label");
+		return message;
 	}
 
 	@GetMapping("/readLog")
