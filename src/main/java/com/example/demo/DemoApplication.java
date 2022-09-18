@@ -54,44 +54,7 @@ public class DemoApplication implements CommandLineRunner {
 //		testFind();
 	}
 
-	void testUpdate() {
-		String sql = "UPDATE books SET price=? WHERE title=?";
-		Object[] params = {9.99f, "Effective Java"};
-		int result = jdbcTemplate.update(sql, params);
 
-		if (result > 0) {
-			System.out.println("Update successfully.");
-		}
-	}
-
-	void testDelete(){
-		String sql = "DELETE FROM books WHERE title=?";
-		Object[] params = {"Effective Java"};
-		int result = jdbcTemplate.update(sql, params);
-
-		if (result > 0) {
-			System.out.println("Delete successfully.");
-		}
-	}
-
-	void testListAll() {
-		String sql = "SELECT * FROM books";
-
-		List<Book> listBooks = jdbcTemplate.query(sql,
-				BeanPropertyRowMapper.newInstance(Book.class));
-
-		for (Book book : listBooks) {
-			System.out.println(book);
-		}
-	}
-
-	void testFind() {
-		String sql = "SELECT * FROM books WHERE id = 1";
-		Book book = jdbcTemplate.queryForObject(sql,
-				BeanPropertyRowMapper.newInstance(Book.class));
-
-		System.out.println(book);
-	}
 
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -103,35 +66,6 @@ public class DemoApplication implements CommandLineRunner {
 		ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.US);
 		String message = bundle.getString("label");
 		return message;
-	}
-
-	@GetMapping("/readLog")
-	public String readLog(@RequestParam(value = "path") String path) throws IOException {
-
-		// File path is passed as parameter
-		File file = new File(
-				"C:\\Users\\ludunyue\\Desktop\\1\\test.txt");
-
-		// Note:  Double backquote is to avoid compiler
-		// interpret words
-		// like \test as \t (ie. as a escape sequence)
-
-		// Creating an object of BufferedReader class
-		BufferedReader br
-				= new BufferedReader(new FileReader(file));
-
-		// Declaring a string variable
-		String st;
-		StringBuilder builder = new StringBuilder();
-		// Condition holds true till
-		// there is character in a string
-		while ((st = br.readLine()) != null){
-			// Print the string
-			System.out.println(st);
-			builder.append(st);
-		}
-
-		return builder.toString();
 	}
 
 }
