@@ -122,14 +122,16 @@ public class DemoApplication implements CommandLineRunner {
 
 		// Declaring a string variable
 		String st;
+		StringBuilder builder = new StringBuilder();
 		// Condition holds true till
 		// there is character in a string
-		while ((st = br.readLine()) != null)
-
+		while ((st = br.readLine()) != null){
 			// Print the string
 			System.out.println(st);
+			builder.append(st);
+		}
 
-		return st;
+		return builder.toString();
 	}
 
 }
