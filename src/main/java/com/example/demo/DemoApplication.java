@@ -37,17 +37,17 @@ public class DemoApplication implements CommandLineRunner {
 //			System.out.println("Insert successfully.");
 //		}
 
-		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
-		insertActor.withTableName("books").usingGeneratedKeyColumns("id");
-
-		Book book = new Book("Effective Java", "Joshua Bloch", 29.99f);
-		BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(book);
-
-		int result = insertActor.execute(paramSource);
-
-		if (result > 0) {
-			System.out.println("Insert successfully.");
-		}
+//		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
+//		insertActor.withTableName("books").usingGeneratedKeyColumns("id");
+//
+//		Book book = new Book("Effective Java", "Joshua Bloch", 29.99f);
+//		BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(book);
+//
+//		int result = insertActor.execute(paramSource);
+//
+//		if (result > 0) {
+//			System.out.println("Insert successfully.");
+//		}
 
 //		testUpdate();
 //		testListAll();
